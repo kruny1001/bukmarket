@@ -1,0 +1,52 @@
+
+<style>
+  .card-box-title{
+    min-width: 80%;
+    padding: 16px;
+    color:white;
+    font-weight:bold;
+    border-radius: 0 25px 25px 0;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffa735+0,227ef7+100 */
+    background: #ffa735; /* Old browsers */
+    background: -moz-linear-gradient(left, #ffa735 0%, #227ef7 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, #ffa735 0%,#227ef7 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, #ffa735 0%,#227ef7 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffa735', endColorstr='#227ef7',GradientType=1 ); /* IE6-9 */
+  }
+  .card-box-addr{
+    min-width: 80%;
+    padding: 16px;
+    color:white;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2638ff+0,227ef7+100&1+25,0+99 */
+    background: -moz-linear-gradient(left,  rgba(38,56,255,1) 0%, rgba(37,74,253,1) 25%, rgba(34,125,247,0) 99%, rgba(34,126,247,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(38,56,255,1) 0%,rgba(37,74,253,1) 25%,rgba(34,125,247,0) 99%,rgba(34,126,247,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(38,56,255,1) 0%,rgba(37,74,253,1) 25%,rgba(34,125,247,0) 99%,rgba(34,126,247,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2638ff', endColorstr='#00227ef7',GradientType=1 ); /* IE6-9 */
+  }
+  .vertical-text {
+    -ms-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -ms-transform-origin: left top 0;
+    -moz-transform-origin: left top 0;
+    -webkit-transform-origin: left top 0;
+    transform-origin: left top 0;
+    background: #E23737;
+    color: #fff;
+  }
+</style>
+<section style="padding:0px;" layout>
+  <!-- <div class="vertical-text" style="background-color:orange;"> DONGHAE - SUNRISE CITY </div> -->
+  <div style="position: relative; margin:0px; background-color:white; border: 13px solid orange;">
+    <div style="position:absolute">
+      <div style="font-size:25px; line-height:35px;"  class="card-box-title md-title"> <span style="color:#0775cc;">{{info.index}}</span> <span>{{info.title}}</span> </div>
+      <div class="card-box-addr">
+        <div style="font-size:25px; line-height:35px;" class="md-title"> {{info.address}} </div>
+        <div style="font-size:25px; line-height:35px;" class="md-title"> {{info.tel}} </div>
+      </div>
+    </div>
+    <img style="width:100%;" ng-src="{{info.img}}"/>
+    <div style="background-color:white; padding:18px; font-size:35px; line-height:45px;" class="md-title"> {{info.desc}} </div>
+  </div>
+</section>

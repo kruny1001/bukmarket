@@ -1,0 +1,114 @@
+<style>
+    #map { position:absolute; top:0; bottom:0; width:100%; height:400px;}
+</style>
+
+<div style="background-color: #ef473a; height:8px; width:100%;"></div>
+
+<md-content style="position: relative; height:400px;">
+    <div ng-if="rests" id='map' map-lazy-load="https://maps.google.com/maps/api/js"
+         map-lazy-load-params="{{googleMapsUrl}}">
+        <ng-map center="33.375648,126.549454" zoom="10" style="height: 400px;">
+            <custom-marker id="{{$index}}" ng-repeat="r in rests track by $index"
+                           animation="DROP"
+                           position="{{r.pos}}" title="pos: {{r.pos}}" on-click="click()">
+                <div ng-if="r.verified" ng-click="setIndex($index)">
+                    <img id="marker-{{$index}}" src="img/marker/marker.png" />
+                </div>
+                <div ng-if="!r.verified" ng-click="setIndex($index)">
+                    <img id="marker-{{$index}}" src="img/marker/r_marker.png" />
+                </div>
+            </custom-marker>
+        </ng-map>
+    </div>
+</md-content>
+<div style="background-color: #ef473a; height:8px; width:100%;"></div>
+<md-content style="height: 520px;">
+    <div class="recipe-container" style="position:relative" layout="row">
+        <div flex="60" ng-style="crntImg">
+            <img ng-if="targetRestaurant.verified" src="img/logo.png" class="md-avatar" style="padding: 10px; width:160px; height:150px;" alt="{{item.name}}" />
+        </div>
+        <!--<img flex style="margin:0 auto; width:60%;" ng-src="{{targetRestaurant.pics[targetPicIndex]}}" alt="" class="recipe-image" />-->
+        <div flex="40" style=";width: 40%;height: 100%;right: 0;top: 0;">
+            <div style="display: inline-flex; margin:8px;">
+                <img ng-if="targetRestaurant.verified" src="img/marker/restLogo.png" style="height: 50px;">
+                <h1 ng-if="lang ==='kr'" class="md-title" style="line-height: 50px; margin:0 13px;">
+                    {{targetRestaurant.name}}
+                </h1>
+                <h1 ng-if="lang ==='cn'" class="md-title" style="line-height: 50px; margin:0 13px;">
+                    {{targetRestaurant.name_cn}}
+                </h1>
+                <h1 ng-if="lang ==='en'" class="md-title" style="line-height: 50px; margin:0 13px;">
+                    {{targetRestaurant.name_en}}
+                </h1>
+                <h1 ng-if="lang ==='jp'" class="md-title" style="line-height: 50px; margin:0 13px;">
+                    {{targetRestaurant.name_jp}}
+                </h1>
+            </div>
+            <div style=" margin:8px;">
+                <p ng-if="targetRestaurant.verified" class="paragraph" style="margin:8px; padding:8px;">
+                    <i class="icon ion-ios-navigate"></i> 한돈 인증점
+                </p>
+                <p ng-if="lang ==='kr'" class="paragraph" style="margin:8px; padding:8px;">
+                    <i class="icon ion-ios-navigate"></i> {{targetRestaurant.note}}
+                </p>
+                <p ng-if="lang ==='cn'" class="paragraph" style="margin:8px; padding:8px;">
+                    <i class="icon ion-ios-navigate"></i> {{targetRestaurant.note_cn}}
+                </p>
+                <p ng-if="lang ==='en'" class="paragraph" style="margin:8px; padding:8px;">
+                    <i class="icon ion-ios-navigate"></i> {{targetRestaurant.note_en}}
+                </p>
+                <p ng-if="lang ==='jp'" class="paragraph" style="margin:8px; padding:8px;">
+                    <i class="icon ion-ios-navigate"></i> {{targetRestaurant.note_jp}}
+                </p>
+                <p class="paragraph" style="margin:8px; padding: 8px;">
+                    <i class="icon ion-ios-telephone"></i> {{targetRestaurant.phone}}
+                </p>
+            </div>
+
+            <style>
+                #horizontal-container-map {
+                    height: 80px;
+                    width: 100%;
+                    max-width: 830px; }
+                .repeated-item-map {
+                    border-right: 1px solid #ddd;
+                    box-sizing: border-box;
+                    display: inline-block;
+                    height: 80px;
+                    text-align: center;
+                    width: 100px; }
+                md-virtual-repeat-container {  }
+            </style>
+            <div style="position:absolute; width:100%; height:80px; bottom:0px;">
+                <md-virtual-repeat-container id="horizontal-container-map" md-orient-horizontal>
+                    <div md-virtual-repeat="item in targetRestaurant.pics"
+                         ng-click="selectImg($index)"
+                         class="repeated-item-map" flex style="background-image: url({{item}}); background-size:cover; background-position: center">
+                    </div>
+                </md-virtual-repeat-container>
+            </div>
+        </div>
+    </div>
+</md-content>
+<div style="background-color: #ffd855; height:8px; width:100%;"></div>
+<md-content layout="row" layout-align="start stretched" style="height: 600px;">
+    <md-list ng-if="rests" style="padding:0px; width:100%;">
+        <md-list-item flex ng-click='fly($index)' class="md-3-line" ng-repeat="item in rests track by $index">
+            <img ng-src="{{item.pics[0]}}?{{$index}}" class="md-avatar" alt="{{item.name}}" />
+            <div class="md-list-item-text" layout="column">
+                <h3 ng-if="lang ==='kr'" style="font-weight: bolder">{{ item.name }}</h3>
+                <h3 ng-if="lang ==='cn'" style="font-weight: bolder">{{ item.name_cn }}</h3>
+                <h3 ng-if="lang ==='en'" style="font-weight: bolder">{{ item.name_en }}</h3>
+                <h3 ng-if="lang ==='jp'" style="font-weight: bolder">{{ item.name_jp }}</h3>
+                <h4><i class="icon ion-android-call"></i> {{ item.phone }}</h4>
+                <p ng-if="lang ==='kr'"><i class="icon ion-map"></i> {{ item.note }}</p>
+                <p ng-if="lang ==='cn'"><i class="icon ion-map"></i> {{ item.note_cn }}</p>
+                <p ng-if="lang ==='en'"><i class="icon ion-map"></i> {{ item.note_en }}</p>
+                <p ng-if="lang ==='jp'"><i class="icon ion-map"></i> {{ item.note_jp }}</p>
+            </div>
+            <span flex></span>
+            <img ng-if="item.verified" src="img/logo.png" class="md-avatar" alt="{{item.name}}" />
+        </md-list-item>
+        <md-list-item flex class="md-3-line"></md-list-item>
+    </md-list>
+</md-content>

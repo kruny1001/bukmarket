@@ -1,0 +1,87 @@
+<section class="slideShow" style="background: black; position: relative;">
+    <div ng-if="quizReady" class="answer"
+         style="
+         z-index:99; width:100%; top:0px;
+         background:url('img/quiz_background_1.png');
+         background-repeat: none;
+         background-size: 120%; background-position: center; height:100%; position: absolute;">
+        <div layout="column" layout-align="center center" layout-fill>
+            <div class="quiz-ox-desc" style="text-align: center;">
+                <img style="height:150px; " src="img/doni1.png">
+                <h3 class="md-title" style="color:white; font-weight: bolder;">{{title}} </h3>
+                <md-button ng-disabled="ready" ng-click="quiz_start()" class="md-warn md-raised"> Start </md-button>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="quizEnd" class="answer"
+         style="z-index:99; width:100%; top:0px; background:url('img/quiz_background_1.png');
+             background-repeat: none; background-size: 120%; background-position: center; height:350px; position: absolute;">
+        <div layout="column" layout-align="center center" layout-fill>
+            <div class="quiz-ox-desc" style="text-align: center;">
+                <img style="height:150px; " src="img/doni1.png">
+                <h3 class="md-title" style="color:white; font-weight: bolder;">도새기  OX 퀴즈 다시하기</h3>
+                <md-button ng-click="quiz_start()" class="md-warn md-raised"> Again </md-button>
+            </div>
+        </div>
+    </div>
+    <ul class="slideShow__container" ng-cloak>
+
+        <li class="slideShow__slide" style="background:url('img/quiz_background_2.png');
+             background-repeat: none; background-size: 120%; background-position: center; padding:10px; height:100%;" ng-repeat="quiz in quizs">
+            <div  style=" height:100%; width:100%;">
+                <div class="slideShow__titleWrap">
+                    <h2 class="slideShow__slideTitle">Barichara</h2>
+                    <div class="slideShow__slideSubTitle">La Abuelita</div>
+                </div>
+                <div layout="column" layout-align="center center" layout-fill>
+                    <div class="quiz-ox-desc">
+                        <p class="md-title"> {{quiz.desc}} </p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div ng-if="answerOn" class="answer" style="width:100%; top:0px; background:white; height:100%; position: absolute;">
+        <div layout="column" layout-align="center center" layout-fill>
+            <div class="quiz-ox-desc" style="padding:20px;">
+                <h3 class="md-title">Answer: {{targetAnswer}}</h3>
+                <p> {{targetAnswerDesc}} </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section ng-show="quizOn" layout="row" layout-align="center center" id="selectionGroup"
+         style="margin:auto auto; z-index:99999" layout-margin>
+    <div flex id="emitter1" flex ng-click="answer(true)"
+         style="color:white; margin: 8px 8px 8px 0; background-color: #1BBC9B; padding: 24px; text-align:center;" class="md-display-3"> O </div>
+    <div flex id="emitter2" flex ng-click="answer(false)" style="color:white; margin: 8px 0 8px 0; background-color: #E74C3C; padding: 24px; text-align:center;" class="md-display-3"> X </div>
+
+</section>
+
+<section ng-show="answerOn" layout="row" layout-align="center center" id="selection"
+         style="max-width: 100%; margin:auto auto; z-index:99999" layout-margin>
+    <div ng-click="next()" id="emitter3" flex
+         style="color:white; margin: 0px 0px 8px 0; background-color: #f1c40f; padding: 24px;
+         text-align:center;" class="md-display-3"> Next </div>
+</section>
+
+<section style="display:none">
+    <videogular vg-theme="config.theme.url" vg-player-ready="onPlayerReady($API)" vg-complete="onCompleteVideo()" class="videogular-container audio">
+        <vg-media vg-src="config.sources" vg-type="audio"></vg-media>
+
+        <vg-controls>
+            <vg-play-pause-button></vg-play-pause-button>
+            <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+            <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            </vg-scrub-bar>
+            <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+            <vg-volume>
+                <vg-mute-button></vg-mute-button>
+            </vg-volume>
+        </vg-controls>
+    </videogular>
+</section>

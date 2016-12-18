@@ -1,0 +1,49 @@
+.view-47{}
+
+md-grid-list {
+  margin: 8px; }
+.gray {
+  background: #f5f5f5; }
+.green {
+
+  /*border: #27ae60 3px solid;*/
+  color:white;
+  background-color: rgba(44, 232, 140, 0.36);
+}
+.green:hover{
+  background-color: #30d573;
+}
+
+.yellow {
+  background: rgba(230, 126, 34, 0.33);
+  /*border: #e67e22 3px solid;*/
+  color:white;
+
+}
+.yellow:hover {
+  background-color: #ff8b25;
+}
+.blue {
+  /*border: #2980b9 3px solid;*/
+  color:white;
+  background-color: rgba(249, 195, 255, 0.31);
+}
+.blue:hover {
+  background-color: #38b0ff;
+}
+.purple {
+  background: #8e44ad;
+
+}
+.red {
+  /*border: #34495e 3px solid;*/
+  color:white;
+  background-color: rgba(123, 165, 207, 0.37);
+
+}
+.red:hover{
+  background-color: #6285ae;
+}
+md-grid-tile {
+
+}

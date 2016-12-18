@@ -1,0 +1,238 @@
+<ion-view>
+    <!--<ion-content style="pointer-events: none;">-->
+    <ion-content scroll="true" class="backGradHandon backgroundImg">
+        <section>
+            <!-- Top Line -->
+            <section layout="row" style="height: 8px;display: -webkit-flex; /* Safari */display: flex;">
+                <div flex style="width:250px; height:8px; background-color:#808080"></div>
+                <div flex style="width:250px; height:8px; background-color:#E6B53C"></div>
+                <div flex style="width:250px; height:8px; background-color:#8B1A1E"></div>
+            </section>
+            <div layout="row" layout-align="center center" layout-padding layout-margin>
+                <img style="max-width:400px;" src="img/1.png">
+            </div>
+            <div ng-show="selectedMenu" style="position: fixed;left: 10px;top: 43px;">
+                <md-button style="line-height: 100px;min-width: 0;width: 100px;height: 100px;" class="md-fab" aria-label="Eat cake" ng-click="setMenu()">
+                    <md-icon style="font-size:90px;height: 80px;width: 80px;" md-svg-src="icons/arrow-left.svg"></md-icon>
+                </md-button>
+            </div>
+            <div class="wrapper">
+                <div ng-repeat="menu in menus" class='cnt' layout="row" layout-align="start center" layout-margin ng-click="selectMenu($index)">
+                    <div flex
+                         layout="row"
+                         ng-style="menu.style"
+                         style="max-height:270px; background-color: #cd7658; color:white; padding:30px 0px 0px 30px; border-radius:15px;">
+                        <div flex="40" layout="column">
+                            <div style="font-weight: bold; margin-bottom:4px;" class="md-display-1 front-meun-font-medium">
+                              # {{menu.title}}
+                            </div>
+                            <p class="md-title"> {{menu.desc}} </p>
+                        </div>
+                        <div flex="60" style="overflow: hidden; border-radius:15px;">
+                          <md-icon style="width: 100%; height:100%;" md-svg-src="{{menu.backImg}}"></md-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 나레이션 파트 -->
+            <section style="display:none">
+                <videogular
+                  vg-theme="config.theme.url"
+                  vg-player-ready="onPlayerReadyVideoRoot($API)" 
+                  class="videogular-container audio">
+                    <vg-media vg-src="config.sources" vg-type="audio"></vg-media>
+                    <vg-controls>
+                        <vg-play-pause-button></vg-play-pause-button>
+                        <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                        </vg-scrub-bar>
+                        <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+                        <vg-volume>
+                            <vg-mute-button></vg-mute-button>
+                        </vg-volume>
+                    </vg-controls>
+                </videogular>
+            </section>
+            <!-- Detail Section-->
+            <section ng-show="dp.show" class="detail" ng-repeat="dp in detailPages">
+
+                <section ng-if="$index === 0" ng-if="lang=='kr'" class="detailContainer"
+                         style="margin-bottom: 40px;"
+                         layout="column" layout-align="center center">
+                    <div layout="row" layout-align="center center" layout-padding>
+                        <div flex>
+                            <p class="detailP"> 200년의 중후한 역사를 지닌 북평민속시장은 전국 5대 민속장 중 하나이다. 미전, 채소전, 강포전, 어물전, 잡화전 등 전국 규모의 5일장(3, 8일)을 체험할 수 있다. </p>
+                            <br>
+                        </div>
+                    </div>
+                    <div style="width:100%;" layout="row" layout-align="start start" layout-padding>
+                        <div flex>
+                          <p style="background:#8bc34a; color:white; border-radius: 25px; padding: 5px 5px 5px 30px;" class=" front-meun-font-medium">찾아오시는길</p>
+                          <div style="padding:22px; border-radius:25px; background:white;">
+                            <md-icon style="width: 100%; height:100%;" md-svg-src="img/minimap.svg"></md-icon>
+                          </div>
+                        </div>
+                    </div>
+                    <div style="width:100%;" layout="row" layout-align="start start" layout-padding>
+                      <div flex>
+                        <p style="background:#8bc34a; color:white; border-radius: 25px; padding: 5px 5px 5px 30px;" class=" front-meun-font-medium">대중교통</p>
+                        <div style="padding:22px; background:white; border-radius:25px;">
+                          <p class="detailP"> <strong>시외버스:</strong> 동서울  <md-icon style="height:42px; width:42px;" md-svg-src="icons/arrow-left-b.svg"></md-icon>  <md-icon style="height:42px; width:42px;" md-svg-src="icons/arrow-right-b.svg"></md-icon> 동해(2시간 50분 소요 Tel. 033-532-3800)</p>
+                          <p class="detailP"> <strong>고속버스:</strong> 서울(강남) <md-icon style="height:42px; width:42px;" md-svg-src="icons/arrow-left-b.svg"></md-icon>  <md-icon style="height:42px; width:42px;" md-svg-src="icons/arrow-right-b.svg"></md-icon> 동해(2시간 50분 소요 Tel. 033-531-3400)</p>
+                          <p class="detailP"> #강릉 <md-icon style="height:42px; width:42px;" md-svg-src="icons/arrow-left-b.svg"></md-icon>  <md-icon style="height:42px; width:42px;" md-svg-src="icons/arrow-right-b.svg"></md-icon> 동해: 직행버스 10분 간격 </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="width:100%;" layout="row" layout-align="start start" layout-padding>
+                      <div flex>
+                        <p style="background:#8bc34a; color:white; border-radius: 25px; padding: 5px 5px 5px 30px;" class=" front-meun-font-medium">자동차 </p>
+                        <div style="padding:22px; background:white; border-radius:25px;">
+                            <md-icon style="width: 100%; height:100%;" md-svg-src="img/page1/carmap.svg"></md-icon>
+                        </div>
+                      </div>
+                    </div>
+                    <div style="width:100%; margin-bottom:120px;" layout="row" layout-align="center center" layout-padding>
+                        <md-icon style="max-width:750px; padding:22px; width: 100%; height:100%;" md-svg-src="img/page1/logo1.svg"></md-icon>
+                    </div>
+                </section>
+                <section ng-if="$index === 1" ng-if="lang=='kr'" class="detailContainer"
+                         style="margin-bottom: 40px; padding:0px;"
+                         layout="column" layout-align="center center">
+                    <div class="overlay-picture-1" layout="row"
+                      layout-align="start start" layout-padding>
+                        <div flex style="width:inherit; height:inherit; padding:0px;">
+                          <section style="height:inherit; padding:32px; position: absolute; z-index:9" class="box-addr">
+                            <div>
+                              <div class="md-display-2" style="font-weight:bold"> 전국 5대 민속장 </div>
+                              <div class="md-display-1 hand-write" style="color:#ff5722; font-weight:bold; font-size:45px;"> #민속시장 먹거리 </div>
+                            </div>
+                            <div layout layout-margin>
+                              <div>
+                                <h4 class="hand-write" style="font-size:35px; font-weight:bold; color: orange; ">먹거리</h4>
+                                <ul class="hand-write" style="font-size:25px; line-height:28px; font-weight:bold;">
+                                  <li> 메밀묵 </li>
+                                  <li> 국밥 </li>
+                                  <li> 소머리국밥 </li>
+                                  <li> 메밀전병 </li>
+                                  <li> 잔치국수 </li>
+                                  <li> 보리밥 </li>
+                                  <li> 감자전 </li>
+                                  <li> 만두 </li>
+                                </ul>
+                              </div>
+                              <div>
+                                <h4 class="hand-write" style="font-size:35px; font-weight:bold; color: orange; ">특산물</h4>
+                                <ul class="hand-write" style="font-size:25px; line-height:28px; font-weight:bold;">
+                                  <li>오징어</li>
+                                  <li>문어</li>
+                                  <li>먹태</li>
+                                  <li>명태</li>
+                                  <li>황태</li>
+                                  <li>약초</li>
+                                  <li>포도</li>
+                                </ul>
+                              </div>
+                            </div>
+                          </section>
+                        </div>
+                    </div>
+                    <div class="overlay-picture-2" layout="row" layout-align="start start" layout-padding>
+                        <div flex style="width:inherit; height:inherit; padding:0px;">
+                          <section style="padding:32px; height:inherit;  position: absolute; z-index:9" class="box-addr">
+                            <div>
+                              <div class="md-display-2" style="font-weight:bold"> 전국 5대 민속장 </div>
+                              <div class="md-display-1 hand-write" style="color:#ff5722; font-weight:bold; font-size:45px;"> #국밥거리</div>
+                            </div>
+                          </section>
+                        </div>
+                    </div>
+
+                    <hr/>
+
+                    <div layout="row" layout-align="center center" layout-padding style="padding:15px;">
+                        <div flex>
+                            <p class="detailP"> 북평민속시장의 국밥거리는 옛 우시장이 활성화되었던 시절 형성되어 행상들이나 장을 보러 나온 사람들의 점심 요기로 애용되었으며 현재는 북평민속시장을 대표하는 음식으로 발전하였다. </p>
+                            <br>
+                        </div>
+                    </div>
+
+                    <div style="width:100%; margin-bottom:120px;" layout="row" layout-align="center center" layout-padding>
+                        <md-icon style="max-width:750px; padding:22px; width: 100%; height:100%;" md-svg-src="img/page1/logo1.svg"></md-icon>
+                    </div>
+                </section>
+                <section ng-if="$index === 2" ng-if="lang=='kr'" class="detailContainer"
+                         style="margin-bottom: 40px; padding:0px;"
+                         layout="column" layout-align="center center">
+                    <div class="overlay-picture-3" layout="row"
+                      layout-align="start start" layout-padding>
+                      <div flex style="width:inherit; height:inherit; padding:0px;">
+                        <section layout="column"
+                          style="padding:32px; width:inherit; height:inherit;  position: absolute; z-index:9"
+                          class="box-addr-hor">
+                          <div flex="100">
+                              <p style="font-size:25px; line-height:30px;">
+                                술과 밥을 팔면서 나그네를 머물게 했던 집으로 조선시대의 주막은
+                                나그네가 하룻밤을 쉬어 가는 곳으로서 대부분 술과 음식을 같이
+                                취급하였다.
+                              </p>
+                          </div>
+
+                        </section>
+                      </div>
+                    </div>
+                    <div class="overlay-picture-4" layout="row" layout-align="start start" layout-padding>
+                        <div flex style="width:inherit; height:inherit; padding:0px;"></div>
+                    </div>
+                    <div style="margin-bottom:50px;" class="overlay-picture-5" layout="row" layout-align="start start" layout-padding>
+                        <div flex style="width:inherit; height:inherit; padding:0px;">
+                          <section layout
+                            style="padding:32px; width:inherit; height:inherit;  position: absolute; z-index:9"
+
+                            class="box-addr-hor">
+                            <div flex="40">
+                              <div class="md-display-2" style="font-weight:bold"> 전국 5대 민속장 </div>
+                              <div class="md-display-1 hand-write" style="color:#ff5722; font-weight:bold; font-size:45px;"> #프리마켓 </div>
+                            </div>
+                            <div flex="60">
+                                <p style="font-size:25px; line-height:30px;">
+                                  북평민속시장의 활성화 및 지역주민이
+                                  참여하는 자유 장터의 기능을 할 수
+                                  있는 공간으로 소상공인 창업의
+                                  목적을 위해 무료로 임대 제공하고 있다.
+                                </p>
+                            </div>
+                          </section>
+                        </div>
+                    </div>
+                    <div style="width:100%; margin-bottom:120px;" layout="row" layout-align="center center" layout-padding>
+                        <md-icon style="max-width:750px; padding:22px; width: 100%; height:100%;" md-svg-src="img/page1/logo1.svg"></md-icon>
+                    </div>
+                </section>
+                <section ng-if="$index === 3"
+                         ng-if="lang=='kr'" class="detailContainer"
+                         style="margin-bottom: 40px;"
+                         layout="column" layout-align="center center">
+                    <hr/>
+                    <div layout="row" layout-align="center center" layout-padding>
+                        <div flex>
+                            <div id="dropTitle">
+                              <p id="sightseeTitle1" class="detailP"> 추천!! 동해 여행코스 </p>
+                              <p id="sightseeTitle2" class="detailP"> 산과 바다 그리고 전통시장!! </p>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div style="width:100%;" layout="row" layout-align="start start" layout-padding>
+                        <div flex>
+                          <p style="background:#8bc34a; color:white; border-radius: 25px; padding: 5px 5px 5px 30px;" class=" front-meun-font-medium">여행코스</p>
+                          <div>
+                            <md-icon style="width: 100%; height:100%;" md-svg-src="img/page1/course.svg"></md-icon>
+                          </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </ion-content>
+</ion-view>

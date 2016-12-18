@@ -1,0 +1,42 @@
+<!--
+Bottom bar menus
+
+ -->
+<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu-content>
+        <ion-nav-view name="menuContent"></ion-nav-view>
+    </ion-side-menu-content>
+    <div ng-if="tapMenu" class="bottom-tabs" style="
+        z-index: 99;background-color: #ff9800;">
+        <md-button
+          flex
+          ng-click="sound()" class="menu-font" nav-clear menu-close href="#/app/view1">
+          <div style="font-weight:bold; font-size:32px;">홈</div>
+          <div style="letter-spacing: -1px;" class="md-body-2">HOME</div>
+        </md-button>
+        <md-button
+          flex
+          ng-click="sound(); clickBottomMenu()" class="menu-font" nav-clear menu-close href="#/app/market" >
+          <div style="font-size:32px; font-weight: bold;">시장 안내</div>
+          <div style="letter-spacing: -1px;" class="md-body-2">Information</div>
+        </md-button>
+        <md-button
+          flex
+          ng-click="sound()" class="menu-font" nav-clear menu-close href="#/app/sight">
+          <div style="font-weight: bold; font-size:32px;">관광지 안내</div>
+          <div style="letter-spacing: -1px;" class="md-body-2">Sightsees</div>
+        </md-button>
+        <md-button
+          flex
+          ng-click="sound()" class="menu-font" nav-clear menu-close href="#/app/cam">
+            <div style="font-weight: bold; font-size:32px;">포토존</div>
+            <div style="letter-spacing: -1px;" class="md-body-2">Photo</div>
+        </md-button>
+    </div>
+    <div ng-if="!tapMenu" layout layout-padding class="bottom-tabs" style="z-index: 99; background-color: #eae1de !important;">
+      <img style="height:95%" src="img/home/logo-gang.gif"/>
+      <img style="height:95%" src="img/home/m1.png"/>
+      <img style="height:95%" src="img/home/m3.png"/>
+      <img style="height:95%" src="img/home/m4.png"/>
+    </div>
+</ion-side-menus>

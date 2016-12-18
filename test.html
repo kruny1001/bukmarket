@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" manifest="app.manifest">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Selfie</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <style>
+        #supported {
+            display:none;
+        }
+        #notSupported{
+            display: none;
+        }
+        #cancelled{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div id="supported">
+        <div class="row">
+            <div class="col-md-*">
+                <h1>Create your Selfie...</h1>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <video id="video"></video>
+            </div>
+
+            <div class="col-md-8">
+
+                <img src="" id="photo" class="img-rounded">
+                <blockquote id="msg" style="display:none;">
+                    <p class="text-primary">Right click on the image and save to your computer!</p>
+                </blockquote>
+                <!--  <button id="savebutton" class="btn btn-primary" >Save Photo</button> -->
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+
+                <button id="startbutton" class="btn btn-primary">Take photo</button>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <canvas id="canvas" style="display:none;"></canvas>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top:50px;">
+            <footer>
+                Made in <span class="glyphicon glyphicon-heart"></span> with HTML 5 Web RTC. &copy; TickleTheWeb. Roopesh Reddy C.
+            </footer>
+        </div>
+    </div>
+
+    <div class="jumbotron" id="notSupported">
+        <h3>Ooops, your browser doesn't support WebRTC :(</h3>
+        <p>Please try in Google Chrome, Mozilla Firefox or Opera!</p>
+    </div>
+
+    <div class="jumbotron" id="cancelled">
+        <h3>Aaah, you should have clicked 'ALLOW' !!!</h3>
+        <p>Please click Allow button on the notification under address bar!</p>
+    </div>
+
+</div>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>
+    /*global console*/
+    (function () {
+        "use strict";
+        var streaming = false,
+                video = document.querySelector('#video'),
+                canvas = document.querySelector('#canvas'),
+                photo = document.querySelector('#photo'),
+                startbutton = document.querySelector('#startbutton'),
+                savebutton = document.querySelector('#savebutton'),
+                message = document.querySelector('#msg'),
+                supported = document.querySelector('#supported'),
+                notsupported = document.querySelector('#notSupported'),
+                cancelled = document.querySelector('#cancelled'),
+                width = 320,
+                height = 240;
+
+        navigator.getMedia = (navigator.getUserMedia ||
+        navigator.webkitGetUserMedia ||
+        navigator.mozGetUserMedia ||
+        navigator.msGetUserMedia);
+
+        if (navigator.getMedia === undefined) {
+            notsupported.style.display = "block";
+            return;
+        }
+
+
+
+        navigator.getMedia({
+                    video: true,
+                    audio: false
+                },
+                function (stream) {
+                    if (navigator.mozGetUserMedia) {
+                        video.mozSrcObject = stream;
+                    } else {
+                        var vendorURL = window.URL || window.webkitURL;
+                        video.src = vendorURL.createObjectURL(stream);
+                    }
+
+                    video.play();
+                    supported.style.display = "block";
+                },
+                function (err) {
+                    cancelled.style.display = "block";
+                }
+        );
+
+
+
+
+        video.addEventListener('canplay', function (ev) {
+            if (!streaming) {
+                video.setAttribute('width', width);
+                video.setAttribute('height', height);
+                canvas.setAttribute('width', width);
+                canvas.setAttribute('height', height);
+                streaming = true;
+            }
+        }, false);
+
+        function takepicture() {
+            canvas.width = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+            var data = canvas.toDataURL('image/png');
+            photo.setAttribute('src', data);
+            message.style.display = "block";
+        }
+
+        startbutton.addEventListener('click', function (ev) {
+            takepicture();
+            ev.preventDefault();
+        }, false);
+    }());
+</script>
+
+</body>
+
+</html>

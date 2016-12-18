@@ -1,0 +1,74 @@
+<ion-view>
+    <ion-content scroll="false" class="goldGrad">
+        <section>
+            <section layout="row" style="height: 8px;display: -webkit-flex; /* Safari */display: flex;">
+                <div flex style="width:250px; height:8px; background-color:#808080"></div>
+                <div flex style="width:250px; height:8px; background-color:#E6B53C"></div>
+                <div flex style="width:250px; height:8px; background-color:#8B1A1E"></div>
+            </section>
+            <div layout="row" layout-align="center center">
+                <img style="max-width:400px;" src="img/1.png">
+            </div>
+            <br/>
+            <br/>
+            <div ng-show="readyImage" style="padding: 150px 40px 40px; z-index: 99; position: absolute; width: 100%;">
+                <div>
+                    <div layout="row" layout-align="center center">
+                        <h1 class="md-display-1" style="font-weight: bold; color:white;"> 포토존(Photo Zone) </h1>
+                    </div>
+                    <br>
+                    <div layout="row" layout-align="center center">
+                        <p class="md-title" style="color:white;"> Email 전송 또는 QRCODE(큐알코드)로 사진을 받으실수 있습니다. </p>
+                    </div>
+                    <div layout="row" layout-align="center center">
+                        <md-button style="padding:8px;" class="md-raised md-primary" ng-click="cancel()">
+                          <div style="line-height:20px;">취소하기</div>
+                          <div style="line-height:20px;">Cancel</div>
+                        </md-button>
+                        <md-button style="padding:8px;" class="md-raised md-default" ng-click="sendEmail()">
+                          <div style="line-height:20px;">이메일로 보내기</div>
+                          <div style="line-height:20px;">Send Email</div>
+                        </md-button>
+                        <md-button style="padding:8px;" class="md-raised md-warn" ng-click="qrCode()">
+                          <div style="line-height:20px;">큐알코드로 보내기</div>
+                          <div style="line-height:20px;">Get QR Code</div>
+                        </md-button>
+                    </div>
+                </div>
+                <div>
+                    <div layout="row" layout-align="center center">
+                        <h1 style="color:red;"> {{count}} </h1>
+                    </div>
+                </div>
+            </div>
+            <pixi-cam></pixi-cam>
+            <section ng-show="!readyToSend" style="height: 100px; position:relative; width:100%;">
+                <div style="padding:10px;">
+                  <p class="front-meun-font" style="font-size:35px;"> 사진을 찍기 전에 위의 스티커를 사용해서 꾸밀 수 있습니다. </p>
+                  <p> You can decorate your photo by adding and dragging stickers </p>
+                </div>
+                <md-content layout="row" layout-align="center center" style="background-color: inherit; padding:10px 0;">
+                    <md-button style="padding:8px;" flex class="md-title md-raised md-warn" ng-click="preview()">
+                        <md-icon md-svg-src="icons/camera.svg" style="color: #ffffff;width:60px;height:60px;" aria-label="Cake Icon"></md-icon>
+                        <span class="md-title">사진찍기</span><span style="margin-left:6px;" class="md-title">(Take Picture)</span>
+                    </md-button>
+                </md-content>
+            </section>
+            <section class="uploading-img"
+                     style="" layout="column" layout-align="center center">
+                <div class="uploading-img-container">
+                    <div ng-if="lang=='kr'" class="md-display-3 uploading-img-title">사진 전송중 ...</div>
+                    <div ng-if="lang=='cn'" class="md-display-3 uploading-img-title">上传图片 ... </div>
+                    <div ng-if="lang=='en'" class="md-display-3 uploading-img-title">Uploading Image ...</div>
+                    <div ng-if="lang=='jp'" class="md-display-3 uploading-img-title">アップロード画像 ...</div>
+                    <div class="loader">
+                        <div class="md-display-3"></div>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </ion-content>
+</ion-view>

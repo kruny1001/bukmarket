@@ -1,0 +1,25 @@
+<ion-view>
+    <ion-content scroll="true" class="backGrad backgroundImg">
+        <section layout="row" style="height: 8px;display: -webkit-flex; /* Safari */display: flex;">
+            <div flex style="width:250px; height:8px; background-color:#808080"></div>
+            <div flex style="width:250px; height:8px; background-color:#E6B53C"></div>
+            <div flex style="width:250px; height:8px; background-color:#8B1A1E"></div>
+        </section>
+        <div layout="row" layout-align="center center" layout-padding layout-margin>
+            <img style="max-width:400px;" src="img/1.png">
+        </div>
+        <div style="padding:0px; margin:0px;" layout="column" layout-align="start stretch"
+        class="wrapper">
+            <br/>
+            <br/>
+            <div ng-repeat="info in infos">
+              <card-box info="info"></card-box>
+            </div>
+            <br/>
+            <br/>
+        </div>
+        <div style="width:100%; margin-bottom:120px;" layout="row" layout-align="center center" layout-padding>
+            <md-icon style="max-width:750px; padding:22px; width: 100%; height:100%;" md-svg-src="img/page1/logo1.svg"></md-icon>
+        </div>
+    </ion-content>
+</ion-view>

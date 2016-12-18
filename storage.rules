@@ -1,0 +1,8 @@
+service firebase.storage {
+  match /b/statsdsu.appspot.com/o {
+     match /{allPaths=**} {
+      allow write;
+      allow read;
+    }
+  }
+}

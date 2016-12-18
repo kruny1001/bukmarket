@@ -1,0 +1,38 @@
+<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2 style="color:white;">이메일로 전송하기(Send Email)</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <form ng-submit="sendEmail(email)">
+    <md-dialog-content ng-cloak>
+
+            <div class="md-dialog-content" style="padding-top: 0px;">
+                <img style="margin: auto; max-width: 100%;"
+                     alt="Lush mango tree" ng-src="{{targetSrc.src}}">
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Email</label>
+                    <input name="email" ng-model="email"
+                           type="email"
+                           autocomplete="off"
+                           required ng-pattern="/^.+@.+\..+$/" />
+                    <div class="hint" ng-show="showHints">How can we reach you?</div>
+                </md-input-container>
+            </div>
+            <div ng-if="err">
+                <p style="color:red">{{err}}</p>
+            </div>
+
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+        <span flex></span>
+        <md-button ng-click="cancel()"> 취소하기 (Cancel) </md-button>
+        <md-button type="submit"> 전송하기 (Send Email) </md-button>
+    </md-dialog-actions>
+    </form>
+</md-dialog>
