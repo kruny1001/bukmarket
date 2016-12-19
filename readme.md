@@ -154,5 +154,17 @@ DONE 카메라 좌우반전
 DONE 카운트숫자, 카운터위치 변경
 DONE 사진찍기 버튼 누르면 2에서 멈춘다.
 DONE 이메일 전송시 타이틀 변경
+Done 키보드 셋팅
 
-??? 키보드 셋팅
+Logo reordering
+Logo replace with new Logo
+
+#Pixi Interface Integration#
+  ## Video Interface
+  ## Audio Interface
+  ## Slider Interface
+    ### Take care of the type of content
+    ### How to load the Data
+
+Container
+PIXI.autoDetectRenderer(_가로사이즈, _세로사이즈, _옵션)

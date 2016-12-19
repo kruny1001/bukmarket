@@ -38,9 +38,9 @@
             <section style="display:none">
                 <videogular
                   vg-theme="config.theme.url"
-                  vg-player-ready="onPlayerReadyVideoRoot($API)" 
+                  vg-player-ready="onPlayerReadyAudioRoot($API)"
                   class="videogular-container audio">
-                    <vg-media vg-src="config.sources" vg-type="audio"></vg-media>
+                    <vg-media vg-src="configAudio.sources" vg-type="audio"></vg-media>
                     <vg-controls>
                         <vg-play-pause-button></vg-play-pause-button>
                         <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>

@@ -10,7 +10,6 @@
 angular.module('starter')
   .controller('View1Ctrl', function ($scope, $sce, $location, $timeout, $rootScope, $state) {
     $rootScope.tapMenu = false;
-    $rootScope.tapMenu = false;
     var audio = new Audio('sounds/click.mp3');
 
     $scope.$watch('$viewContentLoaded', function(){});
@@ -27,7 +26,7 @@ angular.module('starter')
     });
     $scope.$on("$ionicView.beforeLeave", function(event, data){
       if($rootScope.APIRoot !==null)
-        //$rootScope.APIRoot.pause();
+        $rootScope.APIRoot.pause();
       $rootScope.tapMenu = true;
     });
     $scope.goTo = function(name){

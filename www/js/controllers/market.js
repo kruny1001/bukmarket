@@ -30,22 +30,22 @@ angular.module('starter')
       })
       $scope.selectedMenu = false;
       //$timeout(function() {$scope.API.play()}, 1000);
-      if($rootScope.APIRoot !==null){
-        $rootScope.setVideoRoot(1);
+      if($rootScope.AudioAPIRoot !==null){
         $timeout(function(){
-          //$rootScope.APIRoot.play()
+          console.log($rootScope.AudioAPIRoot);
+          $rootScope.AudioAPIRoot.play()
         }, 100);
       }
     })
 
     //BeforeLeave
     $scope.$on("$ionicView.beforeLeave", function(event, data){
-      // if($scope.API.currentState !== undefined && $scope.API.currentState !=='stop')
-      //   $scope.API.stop();
+      if($rootScope.AudioAPIRoot.currentState !== undefined && $rootScope.AudioAPIRoot.currentState !=='stop')
+        $rootScope.AudioAPIRoot.stop();
       //Root Level Audio Setting
-      console.log($rootScope.APIRoot)
-      if($rootScope.APIRoot !==null)
-        $rootScope.APIRoot.pause();
+      console.log($rootScope.AudioAPIRoot)
+      if($rootScope.AudioAPIRoot !==null)
+        $rootScope.AudioAPIRoot.pause();
     });
     $scope.detailOn = false;
     //Menu List
